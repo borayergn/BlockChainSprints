@@ -4,7 +4,29 @@
 	},
 	"language": "Solidity",
 	"output": {
-		"abi": [],
+		"abi": [
+			{
+				"constant": false,
+				"inputs": [
+					{
+						"internalType": "contract PowerContractInterface",
+						"name": "inter",
+						"type": "address"
+					}
+				],
+				"name": "arrangeContract",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"payable": false,
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
 		"devdoc": {
 			"methods": {}
 		},
@@ -26,10 +48,10 @@
 	},
 	"sources": {
 		"Sprint1/Sprint1.sol": {
-			"keccak256": "0x815a9447226e2f80c380bdfcec97c46495e6a7b9ea94196b40d9240f53fba68f",
+			"keccak256": "0xf60c3a41fac3742cc584a9e8c82a57d0a2a77713921b4ee834c43e3586031d3b",
 			"urls": [
-				"bzz-raw://ef0d8a4bdf9814091c120ffbdefe31d397ceb4d5b5e7b32bfbeed02312c2cc73",
-				"dweb:/ipfs/QmPaMVYhUx9oA3R6gy1e7TXtdK5napD5rowWnNHivDCxdN"
+				"bzz-raw://bdaad428bc9f7fdaa7f696ba259cd0b07e0687ad4c364b4d34fbbde7404bc7f4",
+				"dweb:/ipfs/QmZ5G5tw6X1WJTtfzmGHoSgzM1zFqdbbitsXWghHfsgKEa"
 			]
 		}
 	},

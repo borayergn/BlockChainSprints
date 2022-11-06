@@ -29,20 +29,14 @@ contract BaBoBa{
     address powerContractAddres = 0xA7c40D644bDB571F98D72A08AF2A1Fb4Ab4f24fe;
     PowerContractInterface pc_interface = PowerContractInterface(powerContractAddres);
 
-    int256 a = pc_interface.getXdimension();
    
+   function arrangeContract(PowerContractInterface inter) public returns(uint){
+        address myAdd = inter.getMyTeamContract();
+        inter.setMyTeamContract(myAdd); 
+   }
+
+   uint a = arrangeContract(pc_interface);
 
 
-   /* function fun(int256 x, int256 y) public view returns(bytes32,address){
-        address  ad = pc_interface.getMyTeamContract();
-        bytes32 bahar = pc_interface.getCellHash(x,y);
-        return (bahar,ad);
-    }
-  struct S {
-        bytes32 a;
-        address b;
-    }
-(bytes32 a, address b) = fun(1,1);
-   S funReturn s = S(a,b);
-   */
+
 }
