@@ -378,10 +378,17 @@
 	},
 	"sources": {
 		"Sprint1/Sprint1.sol": {
-			"keccak256": "0xf60c3a41fac3742cc584a9e8c82a57d0a2a77713921b4ee834c43e3586031d3b",
+			"keccak256": "0xb18a153f62e58370a11cbb75d5a7b8f319b71f4106f33c6bb01c3440edb63d62",
 			"urls": [
-				"bzz-raw://bdaad428bc9f7fdaa7f696ba259cd0b07e0687ad4c364b4d34fbbde7404bc7f4",
-				"dweb:/ipfs/QmZ5G5tw6X1WJTtfzmGHoSgzM1zFqdbbitsXWghHfsgKEa"
+				"bzz-raw://a0182168dd6f916549a6b2bbf970ad2cfa9e336aee959fc96aa4c1be878b9ef7",
+				"dweb:/ipfs/QmXDx9ryyg4nbpxZkosM3CTkkSXqitvATsbFPb2BBiXEv3"
+			]
+		},
+		"hardhat/console.sol": {
+			"keccak256": "0x60b0215121bf25612a6739fb2f1ec35f31ee82e4a8216c032c8243d904ab3aa9",
+			"urls": [
+				"bzz-raw://6e29880d33dd479bb046ba306993d26ccb779a4b1d94a046cb3567f22948bb4d",
+				"dweb:/ipfs/QmfTY1qzPt5C63Wc7y6JqfZr5899NRvXYdCpyLzR5FXQic"
 			]
 		}
 	},

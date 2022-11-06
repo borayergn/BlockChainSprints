@@ -1,4 +1,5 @@
  pragma solidity ^0.5.17;
+ import "hardhat/console.sol";
 
 contract PowerContractInterface{
 
@@ -33,6 +34,7 @@ contract BaBoBa{
    function arrangeContract(PowerContractInterface inter) public returns(uint){
         address myAdd = inter.getMyTeamContract();
         inter.setMyTeamContract(myAdd); 
+        bytes32 hs = inter.getCellHash(1,1);
    }
 
    uint a = arrangeContract(pc_interface);
