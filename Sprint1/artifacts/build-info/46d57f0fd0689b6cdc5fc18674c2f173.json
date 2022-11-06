@@ -1,12 +1,12 @@
 {
-	"id": "d0455965f770a3795d072e9a2c427191",
+	"id": "46d57f0fd0689b6cdc5fc18674c2f173",
 	"_format": "hh-sol-build-info-1",
 	"solcVersion": "0.5.17",
 	"solcLongVersion": "0.5.17+commit.d19bba13",
 	"input": {
 		"language": "Solidity",
 		"sources": {
-			"AAADENEMEAAA.sol": {
+			"Sprint1/Sprint1.sol": {
 				"content": ""
 			}
 		},
@@ -41,21 +41,21 @@
 		"errors": [
 			{
 				"component": "general",
-				"formattedMessage": "AAADENEMEAAA.sol:1:1: Warning: Source file does not specify required compiler version! Consider adding \"pragma solidity ^0.5.17;\"\n\n^\n",
+				"formattedMessage": "Sprint1/Sprint1.sol:1:1: Warning: Source file does not specify required compiler version! Consider adding \"pragma solidity ^0.5.17;\"\n\n^\n",
 				"message": "Source file does not specify required compiler version! Consider adding \"pragma solidity ^0.5.17;\"",
 				"severity": "warning",
 				"sourceLocation": {
 					"end": 0,
-					"file": "AAADENEMEAAA.sol",
+					"file": "Sprint1/Sprint1.sol",
 					"start": 0
 				},
 				"type": "Warning"
 			}
 		],
 		"sources": {
-			"AAADENEMEAAA.sol": {
+			"Sprint1/Sprint1.sol": {
 				"ast": {
-					"absolutePath": "AAADENEMEAAA.sol",
+					"absolutePath": "Sprint1/Sprint1.sol",
 					"exportedSymbols": {},
 					"id": 1,
 					"nodeType": "SourceUnit",
