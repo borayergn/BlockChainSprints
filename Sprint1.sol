@@ -23,7 +23,7 @@ contract PowerContractInterface{
      function getTxOrigin() public view returns (address);
      function setCellsFromContract(int x, int y, bytes32 nonce) public payable returns (bytes32);
      function getTotalCalls() public view returns (uint);
-     
+
 }
 contract BaBoBa{
 
@@ -47,30 +47,34 @@ contract BaBoBa{
 
      
      
-     function findNonce()public pure returns(bytes32){
+     function findNonce(int x,int y)public view returns(uint256,bytes32,uint256,uint256,uint256){
 
-          uint256 teamNo = 5;
-          bytes32  newTeamNo = bytes32(teamNo);
+          int256 teamNo = pc_interface.getMyTeamNumber();
+          bytes32 bytes32_TeamNo = bytes32(teamNo);
 
-          bytes32  cellHash = 0x1617cb3e4cefd285d8221a38c2b786cf6849dd98506acc823a25fb1de1e80987;
-          int256  pow = 1;
+          bytes32  cellHash = pc_interface.getCellHash(x,y);
+          uint256  pow = uint256(pc_interface.getCellPower(x,y));
           uint  nonce = 1; 
-          bytes memory ab = abi.encodePacked(cellHash,pow,nonce);
-          bytes32  newHash = sha256(abi.encodePacked(cellHash,newTeamNo,nonce));
+          bytes32  newHash = sha256(abi.encodePacked(cellHash,bytes32_TeamNo,nonce));
 
-          uint  mult = uint(newHash)*2;
-          bytes32  newHash2 = bytes32(mult);
+          uint  multiplication = uint(newHash)*(2**pow);
+          bytes32  finalHash = bytes32(multiplication);
 
           uint256 int_cellHash = uint256(cellHash);
           uint256 int_newHash = uint256(newHash);
 
-          while(int_cellHash > int_newHash){
-          int_newHash = uint256(sha256(abi.encodePacked(cellHash,newTeamNo,nonce)));
+          if(int_cellHash > int_newHash){
+               while(int_cellHash > int_newHash){
+               int_newHash = uint256(sha256(abi.encodePacked(cellHash,bytes32_TeamNo,nonce)));
+
                nonce++;
                }
 
-          return bytes32(nonce);
-
+               //Nonce was returning one more than needed because of condition. So its one decreased here after loop.
+               nonce--;
+          }
+          
+               return (nonce,bytes32(nonce),int_cellHash,int_newHash,pow);
           } 
-   
+
 }

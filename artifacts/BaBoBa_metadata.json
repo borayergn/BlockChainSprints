@@ -22,17 +22,48 @@
 			},
 			{
 				"constant": true,
-				"inputs": [],
+				"inputs": [
+					{
+						"internalType": "int256",
+						"name": "x",
+						"type": "int256"
+					},
+					{
+						"internalType": "int256",
+						"name": "y",
+						"type": "int256"
+					}
+				],
 				"name": "findNonce",
 				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					},
 					{
 						"internalType": "bytes32",
 						"name": "",
 						"type": "bytes32"
+					},
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
 					}
 				],
 				"payable": false,
-				"stateMutability": "pure",
+				"stateMutability": "view",
 				"type": "function"
 			},
 			{
@@ -87,10 +118,10 @@
 	},
 	"sources": {
 		"Sprint1.sol": {
-			"keccak256": "0x9fcbbf9e20620fc0e9c66a0e2c0833a9065f8093e630fa0bbb2db2c96d12f7dc",
+			"keccak256": "0x1cedaf6bd9b0546802edeb98cd777a0e497380481d9124da9941879c4a00bc6d",
 			"urls": [
-				"bzz-raw://6adfe22df451ed2ff23cd66e4e262274a9155a59337f79841ba0fc4c951cbfea",
-				"dweb:/ipfs/Qme7rMLyUF1wVUZD5nwZwqgHcYcnMDAUkMfJe2SJ4Pgg5W"
+				"bzz-raw://21e997b92ac6f0b2fa0dddd0e3ec667b14549cddb90a540f05b8f14742469f25",
+				"dweb:/ipfs/QmcHi1tDY3RR4PdzkSxa2Pf2jz1sXFATp7LyAM4aw54XPd"
 			]
 		},
 		"hardhat/console.sol": {
