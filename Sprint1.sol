@@ -1,6 +1,7 @@
  pragma solidity ^0.5.17;
  import "hardhat/console.sol";
 
+
 contract PowerContractInterface{
 
  function getCellHash(int256 x, int256 y) public view returns (bytes32);
@@ -31,13 +32,16 @@ contract BaBoBa{
     PowerContractInterface pc_interface = PowerContractInterface(powerContractAddres);
 
    
-   function arrangeContract(PowerContractInterface inter) public returns(uint){
-        address myAdd = inter.getMyTeamContract();
-        inter.setMyTeamContract(myAdd); 
-        bytes32 hs = inter.getCellHash(1,1);
+   function arrangeContract(PowerContractInterface inter) public view returns(int){
+        //address myAdd = inter.getMyTeamContract();
+        //inter.setMyTeamContract(myAdd); 
+        //bytes32 hs = inter.getCellHash(1,1);
+        int teamNumber = inter.getTeamNumberFromAccount(0x06D99001C37C88f996f629698c822F19dB68388D);
+        return teamNumber;
    }
-
-   uint a = arrangeContract(pc_interface);
+     
+   
+   int a = arrangeContract(pc_interface);
 
 
 
