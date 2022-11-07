@@ -26,16 +26,22 @@ contract PowerContractInterface{
 }
 contract BaBoBa{
 
-    address powerContractAddres = 0xA7c40D644bDB571F98D72A08AF2A1Fb4Ab4f24fe;
-    PowerContractInterface pc_interface = PowerContractInterface(powerContractAddres);
+   address powerContractAddres = 0xA7c40D644bDB571F98D72A08AF2A1Fb4Ab4f24fe;
+   address myAdd = 0x06D99001C37C88f996f629698c822F19dB68388D;
+   PowerContractInterface pc_interface = PowerContractInterface(powerContractAddres);
 
-   function arrangeContract(PowerContractInterface inter) public view returns(int){
-        //address myAdd = inter.getMyTeamContract();
-        //inter.setMyTeamContract(myAdd); 
-        //bytes32 hs = inter.getCellHash(1,1);
-        int teamNumber = inter.getMyTeamNumber();
-        return teamNumber;
+   function arrangeContract() public returns(address){
+        
+        pc_interface.setMyTeamContract(myAdd); 
+        address teamAddress = pc_interface.getMyTeamContract();
+        return teamAddress;
    }
-   int a = arrangeContract(pc_interface);
-   int b = pc_interface.getMyTeamNumber();
+
+    function teamNumber() public view returns(int){
+         int team_number = pc_interface.getMyTeamNumber();
+         return team_number;
+    }
+
+    address public t_address =  arrangeContract();
+   
 }
