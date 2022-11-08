@@ -378,17 +378,10 @@
 	},
 	"sources": {
 		"Sprint1.sol": {
-			"keccak256": "0x1cedaf6bd9b0546802edeb98cd777a0e497380481d9124da9941879c4a00bc6d",
+			"keccak256": "0x5c5feba140d0699a27324632f4b58bc2755b231a964b7a789d53fa645be53a18",
 			"urls": [
-				"bzz-raw://21e997b92ac6f0b2fa0dddd0e3ec667b14549cddb90a540f05b8f14742469f25",
-				"dweb:/ipfs/QmcHi1tDY3RR4PdzkSxa2Pf2jz1sXFATp7LyAM4aw54XPd"
-			]
-		},
-		"hardhat/console.sol": {
-			"keccak256": "0x60b0215121bf25612a6739fb2f1ec35f31ee82e4a8216c032c8243d904ab3aa9",
-			"urls": [
-				"bzz-raw://6e29880d33dd479bb046ba306993d26ccb779a4b1d94a046cb3567f22948bb4d",
-				"dweb:/ipfs/QmfTY1qzPt5C63Wc7y6JqfZr5899NRvXYdCpyLzR5FXQic"
+				"bzz-raw://632081659659921745d670aa1b4cfe8fa2f17817b7ca816ada0430379356636b",
+				"dweb:/ipfs/QmYN8yL8SVadPGoTBKBS2jzazZrnkxFrf6pRWHvooTfM1J"
 			]
 		}
 	},

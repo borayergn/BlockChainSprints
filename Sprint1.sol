@@ -1,5 +1,4 @@
 pragma solidity ^0.5.17;
- import "hardhat/console.sol";
 
 
 contract PowerContractInterface{
@@ -25,8 +24,10 @@ contract PowerContractInterface{
      function getTotalCalls() public view returns (uint);
 
 }
-contract BaBoBa{
 
+
+contract BaBoBa{
+     /*
      address powerContractAddres = 0xA7c40D644bDB571F98D72A08AF2A1Fb4Ab4f24fe;
      address myAdd = 0x06D99001C37C88f996f629698c822F19dB68388D;
      PowerContractInterface pc_interface = PowerContractInterface(powerContractAddres);
@@ -68,13 +69,48 @@ contract BaBoBa{
                int_newHash = uint256(sha256(abi.encodePacked(cellHash,bytes32_TeamNo,nonce)));
 
                nonce++;
-               }
+                    }
 
                //Nonce was returning one more than needed because of condition. So its one decreased here after loop.
                nonce--;
-          }
+               }
           
                return (nonce,bytes32(nonce),int_cellHash,int_newHash,pow);
           } 
+*/
+
+     //To use this function on VMs other functions that interacts with power contract should be commented.
+     function VM_Test_FindNonce(bytes32 hashOfCell,uint256 power) view public returns(uint256,bytes32,uint256,uint256,uint256){
+
+          int256 teamNo = 5;
+          bytes32 bytes32_TeamNo = bytes32(teamNo);
+
+          bytes32  cellHash = hashOfCell;
+          uint256  pow = power;
+          uint  nonce = 1; 
+          bytes32  newHash = sha256(abi.encodePacked(cellHash,bytes32_TeamNo,nonce));
+
+          uint  multiplication = uint(newHash)*(2**pow);
+          bytes32  finalHash = bytes32(multiplication);
+
+          uint256 int_cellHash = uint256(cellHash);
+          uint256 int_newHash = uint256(newHash);
+
+          if(int_cellHash > int_newHash){
+               while(int_cellHash > int_newHash){
+               int_newHash = uint256(sha256(abi.encodePacked(cellHash,bytes32_TeamNo,nonce)));
+
+               nonce++;
+                    }
+
+               //Nonce was returning one more than needed because of condition. So its one decreased here after loop.
+               nonce--;
+               }
+          
+               return (nonce,bytes32(nonce),int_cellHash,int_newHash,pow);
+
+
+     }
+          
 
 }
