@@ -27,14 +27,14 @@ contract PowerContractInterface{
 
 
 contract BaBoBa{
-     /*
+     
      address powerContractAddres = 0xA7c40D644bDB571F98D72A08AF2A1Fb4Ab4f24fe;
      address myAdd = 0x06D99001C37C88f996f629698c822F19dB68388D;
      PowerContractInterface pc_interface = PowerContractInterface(powerContractAddres);
 
      function arrangeContract() public returns(address){
           
-          pc_interface.setMyTeamContract(myAdd); 
+          pc_interface.setMyTeamContract(msg.sender); 
           address teamAddress = pc_interface.getMyTeamContract();
           return teamAddress;
      }
@@ -77,9 +77,10 @@ contract BaBoBa{
           
                return (nonce,bytes32(nonce),int_cellHash,int_newHash,pow);
           } 
-*/
+
 
      //To use this function on VMs other functions that interacts with power contract should be commented.
+     /*
      function VM_Test_FindNonce(bytes32 hashOfCell,uint256 power) view public returns(uint256,bytes32,uint256,uint256,uint256){
 
           int256 teamNo = 5;
@@ -108,8 +109,15 @@ contract BaBoBa{
                }
           
                return (nonce,bytes32(nonce),int_cellHash,int_newHash,pow);
+     }
+     */
+     function captureCell(int x, int y) payable public returns(bytes32){
 
+          (,bytes32 nonce,,,) = findNonce(x,y);
 
+          bytes32 newHash = pc_interface.setCellsFromContract.value(0.1 ether)(x,y,nonce);
+
+          return newHash;
      }
           
 

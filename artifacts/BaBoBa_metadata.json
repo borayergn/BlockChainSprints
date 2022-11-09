@@ -6,20 +6,61 @@
 	"output": {
 		"abi": [
 			{
+				"constant": false,
+				"inputs": [],
+				"name": "arrangeContract",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"payable": false,
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"constant": false,
+				"inputs": [
+					{
+						"internalType": "int256",
+						"name": "x",
+						"type": "int256"
+					},
+					{
+						"internalType": "int256",
+						"name": "y",
+						"type": "int256"
+					}
+				],
+				"name": "captureCell",
+				"outputs": [
+					{
+						"internalType": "bytes32",
+						"name": "",
+						"type": "bytes32"
+					}
+				],
+				"payable": true,
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
 				"constant": true,
 				"inputs": [
 					{
-						"internalType": "bytes32",
-						"name": "hashOfCell",
-						"type": "bytes32"
+						"internalType": "int256",
+						"name": "x",
+						"type": "int256"
 					},
 					{
-						"internalType": "uint256",
-						"name": "power",
-						"type": "uint256"
+						"internalType": "int256",
+						"name": "y",
+						"type": "int256"
 					}
 				],
-				"name": "VM_Test_FindNonce",
+				"name": "findNonce",
 				"outputs": [
 					{
 						"internalType": "uint256",
@@ -50,6 +91,36 @@
 				"payable": false,
 				"stateMutability": "view",
 				"type": "function"
+			},
+			{
+				"constant": true,
+				"inputs": [],
+				"name": "t_address",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"payable": false,
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"constant": true,
+				"inputs": [],
+				"name": "teamNumber",
+				"outputs": [
+					{
+						"internalType": "int256",
+						"name": "",
+						"type": "int256"
+					}
+				],
+				"payable": false,
+				"stateMutability": "view",
+				"type": "function"
 			}
 		],
 		"devdoc": {
@@ -73,10 +144,10 @@
 	},
 	"sources": {
 		"Sprint1.sol": {
-			"keccak256": "0x5c5feba140d0699a27324632f4b58bc2755b231a964b7a789d53fa645be53a18",
+			"keccak256": "0x489f7fb99902fafeeba18119198eab78565a2a7d96ae3dc08be6e2f9ba974fe5",
 			"urls": [
-				"bzz-raw://632081659659921745d670aa1b4cfe8fa2f17817b7ca816ada0430379356636b",
-				"dweb:/ipfs/QmYN8yL8SVadPGoTBKBS2jzazZrnkxFrf6pRWHvooTfM1J"
+				"bzz-raw://1af743a70549fec17055d6f17b689e349ef5150111463eab6ead72c78ed40a42",
+				"dweb:/ipfs/QmXf3AickXdXJkghx9iCqhm8WtoVjjcDz357Xr7FqXNVMz"
 			]
 		}
 	},
