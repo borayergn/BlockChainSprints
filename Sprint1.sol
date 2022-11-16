@@ -30,16 +30,18 @@ contract BaBoBa{
      
      address powerContractAddres = 0xA7c40D644bDB571F98D72A08AF2A1Fb4Ab4f24fe;
      address myAdd = 0x06D99001C37C88f996f629698c822F19dB68388D;
-     PowerContractInterface pc_interface = PowerContractInterface(powerContractAddres);
+     
 
      function arrangeContract() public returns(address){
           
+          PowerContractInterface pc_interface = PowerContractInterface(powerContractAddres);
           pc_interface.setMyTeamContract(msg.sender); 
           address teamAddress = pc_interface.getMyTeamContract();
           return teamAddress;
      }
 
      function teamNumber() public view returns(int){
+          PowerContractInterface pc_interface = PowerContractInterface(powerContractAddres);
           int team_number = pc_interface.getMyTeamNumber();
           return team_number;
      }
@@ -50,6 +52,7 @@ contract BaBoBa{
      
      function findNonce(int x,int y)public view returns(uint256,bytes32,uint256,uint256,uint256){
 
+          PowerContractInterface pc_interface = PowerContractInterface(powerContractAddres);
           int256 teamNo = pc_interface.getMyTeamNumber();
           bytes32 bytes32_TeamNo = bytes32(teamNo);
 
@@ -113,6 +116,8 @@ contract BaBoBa{
      */
      function captureCell(int x, int y) payable public returns(bytes32){
 
+          PowerContractInterface pc_interface = PowerContractInterface(powerContractAddres);
+          
           (,bytes32 nonce,,,) = findNonce(x,y);
 
           bytes32 newHash = pc_interface.setCellsFromContract.value(0.1 ether)(x,y,nonce);
