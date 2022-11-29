@@ -50,7 +50,7 @@ contract BaBoBa{
 
      
      
-     function findNonce(int x,int y)public view returns(uint256,bytes32,uint256,uint256,uint256){
+     function findNonce(int x,int y)public view returns(uint256,bytes32,bytes32,bytes32,uint256){
 
           PowerContractInterface pc_interface = PowerContractInterface(powerContractAddres);
           int256 teamNo = pc_interface.getMyTeamNumber();
@@ -64,12 +64,12 @@ contract BaBoBa{
           uint  multiplication = uint(newHash)*(2**pow);
           bytes32  finalHash = bytes32(multiplication);
 
-          uint256 int_cellHash = uint256(cellHash);
-          uint256 int_newHash = uint256(newHash);
 
-          if(int_cellHash > int_newHash){
-               while(int_cellHash > int_newHash){
-               int_newHash = uint256(sha256(abi.encodePacked(cellHash,bytes32_TeamNo,nonce)));
+          if(cellHash > finalHash){
+               while(cellHash > finalHash){
+               finalHash = sha256(abi.encodePacked(cellHash,bytes32_TeamNo,nonce));
+               multiplication = uint(finalHash)*(2**pow);
+               finalHash = bytes32(multiplication);
 
                nonce++;
                     }
@@ -78,7 +78,7 @@ contract BaBoBa{
                nonce--;
                }
           
-               return (nonce,bytes32(nonce),int_cellHash,int_newHash,pow);
+               return (nonce,bytes32(nonce),cellHash,finalHash,pow);
           } 
 
 
@@ -114,16 +114,50 @@ contract BaBoBa{
                return (nonce,bytes32(nonce),int_cellHash,int_newHash,pow);
      }
      */
-     function captureCell(int x, int y) payable public returns(bytes32){
+
+     //Mode parameter is for choosing which mode(function to call) to choose
+     //1 = Finding a powerfull nonce which will be hard to recapture
+     //0 = will be the ordinary next valid nonce
+     function captureCell(int x, int y , uint mode) payable public returns(bytes32){
 
           PowerContractInterface pc_interface = PowerContractInterface(powerContractAddres);
-          
+
           (,bytes32 nonce,,,) = findNonce(x,y);
+
+          /*
+          ---------------------------
+          Mode logic will be written
+          ---------------------------
+          if(mode == 0) {
+               (,nonce,,,) = findNonce(x,y);
+          }
+          else{
+               (,nonce,,,) = findPowerfullNonce(x,y);
+          }        
+          */
 
           bytes32 newHash = pc_interface.setCellsFromContract.value(0.1 ether)(x,y,nonce);
 
           return newHash;
+     }        
+
+     //Functions to be written for increasing functionality with sending one request for taking multiple cells.
+     function takeRow(int row) payable public{
+
      }
+
+     function takeColumn(int column) payable public{
+
+     }
+     function takeSquare(int sideLength , int startPoint) payable public{
           
+     }
+
+     //Function to be written to get more stronger nonce number to make the cell more unrecapturable.
+     function findPowerfullNonce(int x , int y) payable public returns(uint256,bytes32,bytes32,bytes32,uint256){
+          
+     }
+
 
 }
+
