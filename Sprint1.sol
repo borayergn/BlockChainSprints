@@ -118,23 +118,21 @@ contract BaBoBa{
      //Mode parameter is for choosing which mode(function to call) to choose
      //1 = Finding a powerfull nonce which will be hard to recapture
      //0 = will be the ordinary next valid nonce
-     function captureCell(int x, int y , uint mode) payable public returns(bytes32){
+     function captureCell(int x, int y , uint mode,uint limit) payable public returns(bytes32){
 
+          require(mode == 1 || mode == 0,"Invalid mode");
           PowerContractInterface pc_interface = PowerContractInterface(powerContractAddres);
 
           (,bytes32 nonce,,,) = findNonce(x,y);
 
-          /*
-          ---------------------------
-          Mode logic will be written
-          ---------------------------
+       
           if(mode == 0) {
                (,nonce,,,) = findNonce(x,y);
           }
           else{
-               (,nonce,,,) = findPowerfullNonce(x,y);
+               (,nonce,,,) = findPowerfullNonce(x,y,limit);
           }        
-          */
+          
 
           bytes32 newHash = pc_interface.setCellsFromContract.value(0.1 ether)(x,y,nonce);
 
@@ -142,22 +140,106 @@ contract BaBoBa{
      }        
 
      //Functions to be written for increasing functionality with sending one request for taking multiple cells.
-     function takeRow(int row) payable public{
 
+     function captureRow(int row,uint mode,uint limit) payable public{
+          require(mode == 1 || mode == 0,"Invalid Mode");
+
+          PowerContractInterface pc_interface = PowerContractInterface(powerContractAddres);
+          bytes32 nonce;
+          for(int256 i = 0 ; i < pc_interface.getXdimension(); i++){
+                      
+               if(mode == 0) {
+                    (,nonce,,,) = findNonce(row,i);
+               }
+               else{
+                    (,nonce,,,) = findPowerfullNonce(row,i,limit);
+               }   
+
+               pc_interface.setCellsFromContract.value(0.1 ether)(row,i,nonce);
+
+          }
      }
 
-     function takeColumn(int column) payable public{
+     function captureColumn(int column,uint mode , uint limit) payable public{
+          require(mode == 1 || mode == 0,"Invalid Mode");
 
+          PowerContractInterface pc_interface = PowerContractInterface(powerContractAddres);
+          bytes32 nonce;
+          for(int256 i = 0 ; i < pc_interface.getYdimension(); i++){
+                      
+               if(mode == 0) {
+                    (,nonce,,,) = findNonce(i,column);
+               }
+               else{
+                    (,nonce,,,) = findPowerfullNonce(i,column,limit);
+               }   
+
+               pc_interface.setCellsFromContract.value(0.1 ether)(i,column,nonce);
+
+          }
      }
-     function takeSquare(int sideLength , int startPoint) payable public{
-          
+
+     //Only available for ordinary capture
+     function captureSquare(int startPointX , int startPointY,int sideLength) payable public{
+
+          PowerContractInterface pc_interface = PowerContractInterface(powerContractAddres);
+
+          require(
+          (startPointX+sideLength) < pc_interface.getXdimension() || (startPointY+sideLength) < pc_interface.getYdimension()
+          ,"Square is out of range."
+          );
+
+          bytes32 nonce;
+          for(int i = startPointX; i < (startPointX+sideLength) ; i++){
+               for(int j = startPointY; j < (startPointY+sideLength) ; j++){
+                    (,nonce,,,) = findNonce(i,j);
+                    pc_interface.setCellsFromContract.value(0.1 ether)(i,j,nonce);
+               }
+          }
      }
 
-     //Function to be written to get more stronger nonce number to make the cell more unrecapturable.
-     function findPowerfullNonce(int x , int y) payable public returns(uint256,bytes32,bytes32,bytes32,uint256){
-          
+     //Function to get more stronger nonce number to make the cell more unrecapturable.
+     function findPowerfullNonce(int x , int y,uint256 limit) public view returns(uint256,bytes32,bytes32,bytes32,uint256){
+          PowerContractInterface pc_interface = PowerContractInterface(powerContractAddres);
+          int256 teamNo = pc_interface.getMyTeamNumber();
+          bytes32 bytes32_TeamNo = bytes32(teamNo);
+
+          bytes32  cellHash = pc_interface.getCellHash(x,y);
+          uint256  pow = uint256(pc_interface.getCellPower(x,y));
+          uint  nonce = 1; 
+
+          uint256 counter = 0;
+          bytes32 finalHash;
+          uint256 multiplication;
+                   
+          while(counter < limit){
+          finalHash = sha256(abi.encodePacked(cellHash,bytes32_TeamNo,nonce));
+          multiplication = uint(finalHash)*(2**pow);
+          finalHash = bytes32(multiplication);
+          nonce++;
+          if(cellHash<finalHash){
+               counter++;
+               }              
+          }
+          nonce--;
+         
+          return (nonce,bytes32(nonce),cellHash,finalHash,pow);        
      }
 
-
+    
+     //TODO: Finish this function
+     function showCellOwners() public view returns(int256[] memory){
+          PowerContractInterface pc_interface = PowerContractInterface(powerContractAddres);
+          int256 currentTeam;
+          int256[] memory teamsArr;
+          uint256 index = 0;
+          for(int256 i = 0; i < pc_interface.getXdimension();i++){
+               for(int256 j = 0; j < pc_interface.getYdimension();j++){
+                    currentTeam = pc_interface.getCellTeamNumber(i,j);
+                    teamsArr[index] = currentTeam;
+               }
+          }
+          return teamsArr;
+     }
+     
 }
-

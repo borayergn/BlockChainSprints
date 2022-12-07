@@ -37,6 +37,11 @@
 						"internalType": "uint256",
 						"name": "mode",
 						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "limit",
+						"type": "uint256"
 					}
 				],
 				"name": "captureCell",
@@ -47,6 +52,81 @@
 						"type": "bytes32"
 					}
 				],
+				"payable": true,
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"constant": false,
+				"inputs": [
+					{
+						"internalType": "int256",
+						"name": "column",
+						"type": "int256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "mode",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "limit",
+						"type": "uint256"
+					}
+				],
+				"name": "captureColumn",
+				"outputs": [],
+				"payable": true,
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"constant": false,
+				"inputs": [
+					{
+						"internalType": "int256",
+						"name": "row",
+						"type": "int256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "mode",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "limit",
+						"type": "uint256"
+					}
+				],
+				"name": "captureRow",
+				"outputs": [],
+				"payable": true,
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"constant": false,
+				"inputs": [
+					{
+						"internalType": "int256",
+						"name": "startPointX",
+						"type": "int256"
+					},
+					{
+						"internalType": "int256",
+						"name": "startPointY",
+						"type": "int256"
+					},
+					{
+						"internalType": "int256",
+						"name": "sideLength",
+						"type": "int256"
+					}
+				],
+				"name": "captureSquare",
+				"outputs": [],
 				"payable": true,
 				"stateMutability": "payable",
 				"type": "function"
@@ -98,7 +178,7 @@
 				"type": "function"
 			},
 			{
-				"constant": false,
+				"constant": true,
 				"inputs": [
 					{
 						"internalType": "int256",
@@ -109,6 +189,11 @@
 						"internalType": "int256",
 						"name": "y",
 						"type": "int256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "limit",
+						"type": "uint256"
 					}
 				],
 				"name": "findPowerfullNonce",
@@ -139,8 +224,23 @@
 						"type": "uint256"
 					}
 				],
-				"payable": true,
-				"stateMutability": "payable",
+				"payable": false,
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"constant": true,
+				"inputs": [],
+				"name": "showCellOwners",
+				"outputs": [
+					{
+						"internalType": "int256[]",
+						"name": "",
+						"type": "int256[]"
+					}
+				],
+				"payable": false,
+				"stateMutability": "view",
 				"type": "function"
 			},
 			{
@@ -156,56 +256,6 @@
 				],
 				"payable": false,
 				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"constant": false,
-				"inputs": [
-					{
-						"internalType": "int256",
-						"name": "column",
-						"type": "int256"
-					}
-				],
-				"name": "takeColumn",
-				"outputs": [],
-				"payable": true,
-				"stateMutability": "payable",
-				"type": "function"
-			},
-			{
-				"constant": false,
-				"inputs": [
-					{
-						"internalType": "int256",
-						"name": "row",
-						"type": "int256"
-					}
-				],
-				"name": "takeRow",
-				"outputs": [],
-				"payable": true,
-				"stateMutability": "payable",
-				"type": "function"
-			},
-			{
-				"constant": false,
-				"inputs": [
-					{
-						"internalType": "int256",
-						"name": "sideLength",
-						"type": "int256"
-					},
-					{
-						"internalType": "int256",
-						"name": "startPoint",
-						"type": "int256"
-					}
-				],
-				"name": "takeSquare",
-				"outputs": [],
-				"payable": true,
-				"stateMutability": "payable",
 				"type": "function"
 			},
 			{
@@ -245,10 +295,10 @@
 	},
 	"sources": {
 		"Sprint1.sol": {
-			"keccak256": "0xc517cd52f64fff0c3c849a6bb67d650882f7e055c4f3a0b9b198bfbf8767de33",
+			"keccak256": "0x2770fdd46ee1d9135de64a5db0fe0ea7162b3986c7e9167708d92c272eb2ea05",
 			"urls": [
-				"bzz-raw://62a6b41790ef00e508f2040f129db721708b63aef8538499bd57c0c88b90fa75",
-				"dweb:/ipfs/QmcvVvHfVXkAF2f91ccKh2Evw1vC2HR85FEZkc95uPzPae"
+				"bzz-raw://ca3b5cebfc4eb0de7ec6501dee4035fb39ec0398fb8416ddcda0b615d8586255",
+				"dweb:/ipfs/QmX7xFtidqRJMHSaE8RiNb6P2kSBHr66TNsqex2ticSYj2"
 			]
 		}
 	},
